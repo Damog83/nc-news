@@ -1,29 +1,31 @@
 import { useState, useEffect } from "react";
 import fetchArticles from "../utils/fetchArticles";
 import ArticleCard from "./ArticleCard"
+import { useParams } from "react-router-dom";
 
 export default function ArticlesList() {
     
   const [articlesList, setArticlesList] = useState([]);
+  const {topic} = useParams();
 
+ console.log(topic)
     useEffect (()=> {
-        fetchArticles().then((requestedArticles) => {
-        setArticlesList(requestedArticles)
-    },[])
-    })
 
-  return <ul>
-      {articlesList.map(({title, topic, author, created_at}) => {
+
+
+        fetchArticles(topic).then((requestedArticles) => {
+        setArticlesList(requestedArticles)
+    })
+    },[topic])
+
+  return (<ul>
+      {articlesList.map((article) => {
+        
       return (
-          <ArticleCard class = 'ArticleCard'
-          title = {title}
-          topic = {topic}
-          author = {author}
-          created_at = {created_at}
-          />
+          <ArticleCard article = {article} key = {article.article_id}/>
           )
         }
       )
     }
-  </ul>
+  </ul>)
 }

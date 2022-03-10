@@ -1,12 +1,12 @@
 import formatDate from '../utils/formatDate'
 
-export default function ArticleCard({title, author, top, created_at}) {
+export default function ArticleCard({article}) {
     return (
-        <article class = 'article_card' >
-            <h3 id ='title'>{title}</h3>
-            <p id = 'cardAuthor'>{author}</p>
-            <p>{top}</p>
-            <p>{formatDate(created_at)}</p>
+        <article className = 'article_card'>
+            <h3 id ='title'>{article.title}</h3>
+            <p id = 'cardAuthor'>{article.author}</p>
+            <p>{article.topic}</p>
+            <p>{formatDate(article.created_at)}</p>
         </article>
     )
 }
