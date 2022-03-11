@@ -25,10 +25,9 @@ export default function ArticlesList() {
     return (<ul>
       {articlesList.map((article) => {
         
-      return (<>
-      {/* <h3></h3> */}
-          <ArticleCard article = {article}/>
-          </>
+      return (
+          <ArticleCard article = {article} key = {article.article_id}/>
+          
           )
         }
       )
