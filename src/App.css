@@ -9,16 +9,65 @@
 }
 
 #mainHeader{
-  grid-row: 1fr;
+  /* grid-row: 1fr; */
   border: 0.2rem solid rgb(4, 8, 4);
 }
 
-.ArticleList{
-  display: grid;
-  grid-column: 1fr;
+.navBar{
+  text-decoration: none;
 }
 
-.article_card{
+#homeNav{
+  color:black;
+  margin: 1rem;
+}
+
+#footballNav{
+  color: green;
+  margin: 1rem;
+}
+
+#codingNav{
+  color: red;
+  margin: 1rem;
+}
+
+#cookingNav{
+  color: blue;
+  margin: 1rem;
+}
+/* .ArticleList{
+  display: grid;
+  grid-column: 0.5fr;
+} */
+
+.article_card, .articlePageArticle{
   border: 0.2rem solid rgb(4, 8, 4);
   margin: 1rem;
+  padding: 0.5rem;
+}
+
+.article_card:hover{
+  border: 0.2rem solid rgb(241, 59, 13);
+}
+
+.articleListArticleTitle{
+  color: black;
+  text-decoration: none;
+}
+
+.articleBody{
+  text-align:justify;
+}
+
+.topicfootball{
+  color: green;
+}
+
+.topiccoding{
+  color:red;
+}
+
+.topiccooking{
+  color:blue;
 }

@@ -1,14 +1,10 @@
 import {Link} from 'react-router-dom'
 
 export default function NavBar(){
-    return (<nav>
-    <Link to = '/'>Home</Link>
-    <Link to = '/articles/coding'>Coding</Link>
-    <Link to = '/articles/cooking'>Cooking</Link>
-    <Link to = '/articles/football'>Football</Link>    
+    return (<nav >
+    <Link className = 'navBar' id = 'homeNav' to = '/'>Home</Link>
+    <Link className = 'navBar' id = 'codingNav' to = '/articles/coding'>Coding</Link>
+    <Link className = 'navBar' id = 'cookingNav' to = '/articles/cooking'>Cooking</Link>
+    <Link className = 'navBar' id = 'footballNav' to = '/articles/football'>Football</Link>    
     </nav>)
 }
-    // <button type='button' onClick={() => {<link to = '/'>Home</link>}}>Home</button>
-    // <button type='button' onClick = {() => { <link to = '/topics?coding'>Coding</link>}}>Coding</button>
-    // <button type='button' onClick = {() => {<link to = '/topics?cooking'>Cooking</link>}}>Cooking</button>
-    // <button type='button' onClick = {() => {<link to = '/topics?football'>Footbal</link>}}>Football</button>
