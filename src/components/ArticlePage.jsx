@@ -26,7 +26,7 @@ export default function ArticlePage() {
       <p>{formatDate(article.created_at)}</p>
       <h3 className = {`topic${article.topic}`}>{article.topic}</h3>
       <p className = 'articleBody'>{article.body}</p>
-      {/* <ArticleVote className = 'ArticleVote' currentVotes = {article.votes} /> */}
+      <ArticleVote className = 'ArticleVote' votes = {article.votes} article_id = {article.article_id}/>
     </div>
     )
 }
