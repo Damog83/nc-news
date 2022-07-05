@@ -1,28 +1,24 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchTopics } from "../Api";
+import { Link } from "react-router-dom";
+import NavLink from "./NavLink";
 
 export default function NavBar() {
-	const [navLinks, setNavLinks] = useState([]);
+	const [topics, setTopic] = useState([]);
 
 	useEffect(() => {
 		fetchTopics().then((topics) => {
-			setNavLinks(topics);
+			setTopic(topics);
 		});
 	}, []);
 
 	return (
 		<ul>
-            <Link className = 'navBar' id = 'homeNav' to = '/'>Home</Link>
-			{navLinks.map((navLink) => {
-				return (
-					<Link
-						className="navBar"
-						id={`${navLink.slug}Nav`}
-						to={`/articles/${navLink.slug}`}
-						key={`${navLink.slug}`}
-					>{`${navLink.slug}`}</Link>
-				);
+			<Link className="navBar" id="homeNav" to="/">
+				Home
+			</Link>
+			{topics.map((topic) => {
+				return <NavLink topic = {topic} key={`${topic.slug}`} />;
 			})}
 		</ul>
 	);

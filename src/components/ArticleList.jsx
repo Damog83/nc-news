@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {fetchArticles} from "../Api";
-import ArticleCard from "./ArticleCard"
+import ArticleCard from "./ArticleCard";
 
 export default function ArticlesList() {
     

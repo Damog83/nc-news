@@ -22,17 +22,17 @@
   margin: 1rem;
 }
 
-#footballNav{
+#FootballNav{
   color: green;
   margin: 1rem;
 }
 
-#codingNav{
+#CodingNav{
   color: red;
   margin: 1rem;
 }
 
-#cookingNav{
+#CookingNav{
   color: blue;
   margin: 1rem;
 }
@@ -41,7 +41,7 @@
   grid-column: 0.5fr;
 } */
 
-.article_card, .articlePageArticle{
+.article_card, .article{
   border: 0.2rem solid rgb(4, 8, 4);
   margin: 1rem;
   padding: 0.5rem;
