@@ -3,9 +3,8 @@ import axios from 'axios'
 // Look at notes React Router axios base URL 
 
 const myApi = axios.create({
-    baseURL: 'https://nc-news-example-seminar-3-3.herokuapp.com/api',
+    baseURL: 'https://appbencnews.herokuapp.com/api',
   });
-
 
 const fetchArticles = (topic) => {   
 
@@ -16,14 +15,13 @@ const fetchArticles = (topic) => {
     })
 }
 
-// const fetchTopics = () => {
+const fetchTopics = () => {
 
-//     return myApi.get('/topics').then((response) => {
-//         const {data:{topics}} = response;
-//         console.log(topics)
-//         return topics;
-//     })
-// }
+    return myApi.get('/topics').then((response) => {
+        const topics = response.data.topics;
+        return topics;
+    })
+}
 
 const fetchArticle = (article_id) => {
 
@@ -33,6 +31,13 @@ const fetchArticle = (article_id) => {
     })
 }
 
+const patchVotes = (votes, article_id) => {
+
+    return myApi.patch(`/articles/${article_id}`, votes).then((response) => {
+        return response
+    })
+}
 
 
-export {fetchArticles, fetchArticle}
+
+export {fetchArticles, fetchArticle, patchVotes, fetchTopics}

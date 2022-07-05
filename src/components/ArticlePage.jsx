@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {fetchArticle} from "../Api";
 import {useParams} from "react-router-dom"
 import formatDate from "../utils/formatDate";
+import ArticleVote from "../components/ArticleVote"
 
 
 export default function ArticlePage() {
@@ -25,6 +26,7 @@ export default function ArticlePage() {
       <p>{formatDate(article.created_at)}</p>
       <h3 className = {`topic${article.topic}`}>{article.topic}</h3>
       <p className = 'articleBody'>{article.body}</p>
+      <ArticleVote className = 'ArticleVote' votes = {article.votes} article_id = {article.article_id}/>
     </div>
     )
 }
