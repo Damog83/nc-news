@@ -8,7 +8,7 @@ export default function ArticlesList() {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const {topic} = useParams();
-    useEffect (()=> {
+    useEffect (() => {
         fetchArticles(topic).then((requestedArticles) => {
         setArticlesList(requestedArticles);
         setIsLoading(false);

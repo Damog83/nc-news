@@ -11,7 +11,7 @@ export default function ArticleCard({ article }) {
 
 	const uppercaseTopic = startWithUpperCase(topic)
 	return (
-		<article className="article_card">
+		<div className="article_card">
 			<h3>
 				<nav>
 					<Link
@@ -25,6 +25,6 @@ export default function ArticleCard({ article }) {
 			<p id="cardAuthor">{author}</p>
 			<p className={`topic${topic}`}>{uppercaseTopic}</p>
 			<p>{formatDate(created_at)}</p>
-		</article>
+		</div>
 	);
 }

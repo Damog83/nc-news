@@ -1,66 +1,79 @@
-import { useState} from "react"
-import {patchVotes} from "../Api"
+import { useEffect } from "react";
+import { useState } from "react";
+import { patchVotes } from "../Api";
 
-export default function ArticleVote({votes, article_id}){
+export default function ArticleVote({ votes, article_id }) {
+	const [currentVotes, setCurrentVotes] = useState(votes);
+	const [hasVotedUp, setHasVotedUp] = useState(false);
+	const [hasVotedDown, setHasVotedDown] = useState(false);
+	const [err, setErr] = useState(null)
 
-    const [count, setCount] = useState(0);
-//     const [incrementButton, setIncrementButton] = useState(false);
-//     const [decrementButton, setDecrementButton] = useState(false);
-//     const [err, setErr] = useState(null);
+	useEffect(() => {
+		const votedUpHistory = window.localStorage.getItem(`ncNewsArticle${article_id}UpVote`);
+		const votedDownHistory = window.localStorage.getItem(`ncNewsArticle${article_id}DownVote`);
+		setHasVotedUp(JSON.parse(votedUpHistory));
+		setHasVotedDown(JSON.parse(votedDownHistory));
+	},[article_id])
 
-//     const updateVotes = (vote) => {
+	useEffect(() => {
+		window.localStorage.setItem(`ncNewsArticle${article_id}UpVote`, JSON.stringify(hasVotedUp));
+		window.localStorage.setItem(`ncNewsArticle${article_id}DownVote`, JSON.stringify(hasVotedDown));
 
-//             setCurrentVotes(actualVotes => {
-//                 return actualVotes + vote
-//             });
-// console.log(currentVotes,'llllllll')
-//             if(vote === 1 && currentVotes === 0) {
-//                 setIncrementButton(true)
-//                 setDecrementButton(false)
-//                 patchVotes({inc_votes: 1}, article_id).catch((err) => {
-//                 setIncrementButton(false)
-//                 setDecrementButton(true)
-//                 setErr('Something went wrong, please try again.');
-//                 })
-//             }
-    
-//             if(vote === -1 && currentVotes === 0) {
-//                 setIncrementButton(false)
-//                 setDecrementButton(true)
-//                 patchVotes({inc_votes: -1}, article_id).catch((err) => {
-//                 setIncrementButton(true)
-//                 setDecrementButton(false)
-//                 setErr('Something went wrong, please try again.');
-//                 })
-//             }
+	},[article_id, hasVotedUp, hasVotedDown])
 
-//             if(vote === -1 && currentVotes === 1) {
-//                 setIncrementButton(false)
-//                 patchVotes({inc_votes: -1}, article_id).catch((err) => {
-//                 setIncrementButton(true)
-//                 setErr('Something went wrong, please try again.');
-//                 })
-//             }
+	const setIncrementalVotes = () => {
+		setCurrentVotes(currentVotes + 1);
+		if (hasVotedDown) {
+			setHasVotedDown(false);
+		} else {
+			setHasVotedUp(true);
+		}
+		patchVotes({ inc_votes: 1 }, article_id).catch((err) => {
+			setCurrentVotes(currentVotes - 1);
+			setErr('Something went wrong, please try again.');
+		});
+	};
 
-//             if(vote === 1 && currentVotes === -1) {
-//                 setDecrementButton(false)
-//                 patchVotes({inc_votes: 1}, article_id).catch((err) => {
-//                 setDecrementButton(true)
-//                 setErr('Something went wrong, please try again.');
-//                 })
-//             }
-//         }
-        
-//     if(err) return (<p>{err}</p>)
+	const setDecrementalVotes = () => {
+		setCurrentVotes(currentVotes - 1);
+		if (hasVotedUp) {
+			setHasVotedUp(false);
+		} else {
+			setHasVotedDown(true);
+		}
+		patchVotes({ inc_votes: -1 }, article_id).catch((err) => {
+			setCurrentVotes(currentVotes + 1);
+			setErr('Something went wrong, please try again.');
+		});
+	};
 
-    return (
-        <div>
-
-    <button type = 'button' id = 'incrementButton' disabled = {false}>Vote +</button>
-    <p>{votes}</p>
-    <button type = 'button' id = 'decrementButton' disabled = {false}>Vote -</button>
-        
-        </div>
-    )
-
+	if (err) return <p>{err}</p>;
+	
+	return (
+		<div>
+			<button
+				type="button"
+				className="voteButton"
+				disabled={hasVotedUp}
+				id="incrementbutton"
+				onClick={() => {
+					setIncrementalVotes();
+				}}
+			>
+				Vote +
+			</button>
+			<p>{currentVotes}</p>
+			<button
+				type="button"
+				className="voteButton"
+				disabled={hasVotedDown}
+				id="decrementButton"
+				onClick={() => {
+					setDecrementalVotes();
+				}}
+			>
+				Vote -
+			</button>
+		</div>
+	);
 }

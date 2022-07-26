@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import formatDate from "../utils/formatDate";
 import startWithUpperCase from "../utils/formatNavLink";
 import ArticleVote from "../components/ArticleVote";
+import { fetchCommentsByArticleId } from "../Api";
+import { useState } from "react";
 
 export default function Article(props) {
+	const [comments, setComments] = useState({});
+	const [isLoading, setIsLoading] = useState(true);
+
 	const {
 		article: { title,
                    author,
@@ -13,7 +19,17 @@ export default function Article(props) {
                    article_id }
 	} = props;
 
+	useEffect(() => {
+		fetchCommentsByArticleId(article_id).then((requestedComments) => {
+			setComments(requestedComments);
+			setIsLoading(false);
+		})
+	}, [article_id])
+	console.log(comments)
+
     const uppercaseTopic = startWithUpperCase(topic);
+
+	if (isLoading) return <p>Loading...</p>;
 	return (
 		<div className="article">
 			<h2>{title}</h2>
