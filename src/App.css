@@ -77,5 +77,29 @@
 }
 
 .userSignInSelectMenu{
-  margin-top: 30%;
+  margin-top: 10%;
+}
+
+.textArea{
+  padding:1em;
+  width:80%;
+  height:auto;
+  border: 2px solid transparent;
+  background-color: #dddddd;
+  border-radius: 10px;
+  outline:none;
+  font-size:16px;
+  transition: all 0.2s;
+}
+
+.textArea:hover{
+  cursor:pointer;
+  background-color: #eeeeee;
+}
+
+.textArea:focus {
+  cursor:text;
+  color:#333333;
+  background-color: white;
+  border-color: #333333;
 }
