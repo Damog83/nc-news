@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import ArticlePage from "./components/ArticlePage";
 import NavBar from "./components/NavBar";
+import SignInPage from "./components/SignInPage.jsx"
 
 function App() {
   
@@ -13,7 +14,8 @@ function App() {
         <Header id='header'/>
         <NavBar id='navbar'/>
            <Routes>            
-               <Route path = '/' element = {<HomePage />} />
+               <Route path = '/' element = {<HomePage/>} />
+               <Route path = '/signin' element = {<SignInPage/>}/>
                <Route path = '/articles/:topic' element = {<HomePage/>}/>
                <Route path = '/articles/article/:article_id' element = {<ArticlePage/>}/>
            </Routes>

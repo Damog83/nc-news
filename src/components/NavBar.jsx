@@ -18,8 +18,11 @@ export default function NavBar() {
 				Home
 			</Link>
 			{topics.map((topic) => {
-				return <NavLink topic = {topic} key={`${topic.slug}`} />;
+				return <NavLink topic={topic} key={`${topic.slug}`} />;
 			})}
+			<Link className="navBar" id="signIn" to="/signin">
+				Sign In
+			</Link>
 		</ul>
 	);
 }

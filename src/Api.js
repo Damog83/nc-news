@@ -40,6 +40,15 @@ const fetchTopics = () => {
     })
 }
 
+const fetchUsers = () => {
+
+    return myApi.get('/users').then((response) => {
+        const users = response.data.users;
+        console.log(users)
+        return users;
+    })
+}
+
 const patchVotes = (votes, article_id) => {
 
     return myApi.patch(`/articles/${article_id}`, votes).then((response) => {
@@ -47,4 +56,4 @@ const patchVotes = (votes, article_id) => {
     })
 }
 
-export {fetchArticles, fetchArticle, fetchCommentsByArticleId, patchVotes, fetchTopics}
+export {fetchArticles, fetchArticle, fetchCommentsByArticleId, patchVotes, fetchTopics, fetchUsers}
