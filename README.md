@@ -1,4 +1,4 @@
-# North Coders News App
+# NC News App
 
 ## Link to hosted version
 
